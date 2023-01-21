@@ -30,10 +30,20 @@ function App() {
         })}
       </div>
       <div className="flex items-center justify-center mt-4 gap-2 text-2xl text-white">
-        <div className="bg-indigo-600 py-2 px-4 isSelected cursor-pointer">
+        <div
+          className={`${
+            TURNS.X === turn ? "bg-indigo-800" : "bg-indigo-600"
+          } py-2 px-4 cursor-pointer`}
+        >
           {TURNS.X}
         </div>
-        <div className="bg-indigo-600 py-2 px-4 cursor-pointer">{TURNS.O}</div>
+        <div
+          className={`${
+            TURNS.O === turn ? "bg-indigo-800" : "bg-indigo-600"
+          } py-2 px-4 cursor-pointer`}
+        >
+          {TURNS.O}
+        </div>
       </div>
       <footer className="mt-8">
         <p className="text-indigo-100 text-sm">

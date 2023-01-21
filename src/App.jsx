@@ -21,8 +21,12 @@ function App() {
         TIC TAC TOE
       </p>
       <div className="grid grid-cols-3 gap-2 p-2">
-        {board.map((_, index) => {
-          return <Square updateBoard={updateBoard} index={index} key={index} />
+        {board.map((value, index) => {
+          return (
+            <Square updateBoard={updateBoard} index={index} key={index}>
+              {value}
+            </Square>
+          )
         })}
       </div>
       <div className="flex items-center justify-center mt-4 gap-2 text-2xl text-white">

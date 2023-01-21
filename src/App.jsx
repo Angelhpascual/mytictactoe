@@ -1,39 +1,34 @@
 import React, { useState } from "react"
-
-const TURNS = {
-  X: "X",
-  O: "O",
-}
-
-const WINNER_COMBOS = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [2, 4, 6],
-]
+import Square from "../components/Square"
+import { TURNS } from "./constants"
 
 function App() {
   const [board, setBoard] = useState(Array(9).fill(null))
+  const [turn, setTurn] = useState(TURNS.X)
+
+  const updateBoard = (index) => {
+    const newBoard = [...board]
+    newBoard[index] = turn
+    console.log(newBoard)
+    setBoard(newBoard)
+    setTurn(turn === TURNS.X ? TURNS.O : TURNS.X)
+    console.log(turn)
+  }
+
   return (
     <div className="h-screen bg-indigo-500 flex flex-col justify-center items-center">
       <p className="text-xl font-bold text-indigo-200 mb-8 border-2 border-indigo-200 py-2 px-4">
         TIC TAC TOE
       </p>
       <div className="grid grid-cols-3 gap-2 p-2">
-        {board.map((value, index) => {
-          return (
-            <div className="w-16 h-16 border-2 bg-indigo-600" key={index}>
-              {value}
-            </div>
-          )
+        {board.map((_, index) => {
+          return <Square updateBoard={updateBoard} index={index} key={index} />
         })}
       </div>
       <div className="flex items-center justify-center mt-4 gap-2 text-2xl text-white">
-        <div className="bg-indigo-600 py-2 px-4 cursor-pointer">{TURNS.X}</div>
+        <div className="bg-indigo-600 py-2 px-4 isSelected cursor-pointer">
+          {TURNS.X}
+        </div>
         <div className="bg-indigo-600 py-2 px-4 cursor-pointer">{TURNS.O}</div>
       </div>
       <footer className="mt-8">

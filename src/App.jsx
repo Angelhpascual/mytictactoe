@@ -14,6 +14,10 @@ function App() {
     setTurn(turn === TURNS.X ? TURNS.O : TURNS.X)
   }
 
+  const resetBoard = () => {
+    setBoard(Array(9).fill(null))
+    setTurn(TURNS.X)
+  }
   return (
     <div className="h-screen bg-indigo-500 flex flex-col justify-center items-center">
       <p className="text-xl font-bold text-indigo-200 mb-8 border-2 border-indigo-200 py-2 px-4">
@@ -44,6 +48,14 @@ function App() {
           {TURNS.O}
         </div>
       </div>
+      <button
+        onClick={() => {
+          resetBoard()
+        }}
+        className="bg-indigo-300 hover:bg-indigo-400 text-indigo-800 font-bold py-2 px-4 rounded inline-flex items-center mt-8"
+      >
+        <span>Reset</span>
+      </button>
       <footer className="mt-8">
         <p className="text-indigo-100 text-sm">
           Developed by <span className="underline">angelhpascual</span>

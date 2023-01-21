@@ -1,5 +1,21 @@
 import React, { useState } from "react"
 
+const TURNS = {
+  X: "X",
+  O: "O",
+}
+
+const WINNER_COMBOS = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6],
+]
+
 function App() {
   const [board, setBoard] = useState(Array(9).fill(null))
   return (
@@ -17,8 +33,8 @@ function App() {
         })}
       </div>
       <div className="flex items-center justify-center mt-4 gap-2 text-2xl text-white">
-        <div className="bg-indigo-600 py-2 px-4 cursor-pointer">X</div>
-        <div className="bg-indigo-600 py-2 px-4 cursor-pointer">O</div>
+        <div className="bg-indigo-600 py-2 px-4 cursor-pointer">{TURNS.X}</div>
+        <div className="bg-indigo-600 py-2 px-4 cursor-pointer">{TURNS.O}</div>
       </div>
       <footer className="mt-8">
         <p className="text-indigo-100 text-sm">

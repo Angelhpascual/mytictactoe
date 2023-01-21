@@ -1,7 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-div {
-  @apply border-2 border-red-400;
-}

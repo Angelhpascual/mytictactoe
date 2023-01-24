@@ -47,7 +47,6 @@ function App() {
     if (winner) {
       confetti()
       setWinner(winner)
-      return null
     } else if (checkEndGame(newBoard)) {
       setWinner(false)
     }
@@ -65,9 +64,11 @@ function App() {
       </p>
       <div className="grid grid-cols-3 gap-2 p-2">
         {board.map((square, index) => (
-          <Square key={index} index={index} updateBoard={updateBoard}>
-            {square}
-          </Square>
+          <div>
+            <Square key={index} index={index} updateBoard={updateBoard}>
+              {square}
+            </Square>
+          </div>
         ))}
       </div>
       <div className="flex items-center justify-center mt-4 gap-2 text-2xl text-white">

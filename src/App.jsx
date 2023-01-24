@@ -1,10 +1,41 @@
 import React, { useState } from "react"
 import Square from "../components/Square"
-import { TURNS } from "./constants"
+import { TURNS, WINNER_COMBOS } from "./constants"
+import confetti from "canvas-confetti"
+
+const WinnerModal = ({ winner }) => {
+  if (winner === null) return null
+  return (
+    <div className="bg-indigo-800 p-4 rounded-lg mt-6">
+      <p className="text-2xl text-indigo-200">
+        {winner === false ? "It's a tie" : `${winner} wins!`}
+      </p>
+    </div>
+  )
+}
 
 function App() {
   const [board, setBoard] = useState(Array(9).fill(null))
   const [turn, setTurn] = useState(TURNS.X)
+  const [winner, setWinner] = useState(null)
+
+  const checkEndGame = (newBoard) => {
+    return newBoard.every((square) => square !== null)
+  }
+
+  const checkWinner = (boardToCheck) => {
+    for (const combo of WINNER_COMBOS) {
+      const [a, b, c] = combo
+      if (
+        boardToCheck[a] &&
+        boardToCheck[a] === boardToCheck[b] &&
+        boardToCheck[a] === boardToCheck[c]
+      ) {
+        return boardToCheck[a]
+      }
+    }
+    return null
+  }
 
   const updateBoard = (index) => {
     if (board[index]) return
@@ -12,11 +43,20 @@ function App() {
     newBoard[index] = turn
     setBoard(newBoard)
     setTurn(turn === TURNS.X ? TURNS.O : TURNS.X)
+    const winner = checkWinner(newBoard)
+    if (winner) {
+      confetti()
+      setWinner(winner)
+      return null
+    } else if (checkEndGame(newBoard)) {
+      setWinner(false)
+    }
   }
 
   const resetBoard = () => {
     setBoard(Array(9).fill(null))
     setTurn(TURNS.X)
+    setWinner(null)
   }
   return (
     <div className="h-screen bg-indigo-500 flex flex-col justify-center items-center">
@@ -24,13 +64,11 @@ function App() {
         TIC TAC TOE
       </p>
       <div className="grid grid-cols-3 gap-2 p-2">
-        {board.map((value, index) => {
-          return (
-            <Square updateBoard={updateBoard} index={index} key={index}>
-              {value}
-            </Square>
-          )
-        })}
+        {board.map((square, index) => (
+          <Square key={index} index={index} updateBoard={updateBoard}>
+            {square}
+          </Square>
+        ))}
       </div>
       <div className="flex items-center justify-center mt-4 gap-2 text-2xl text-white">
         <div
@@ -48,6 +86,7 @@ function App() {
           {TURNS.O}
         </div>
       </div>
+      {winner !== null && <WinnerModal winner={winner} />}
       <button
         onClick={() => {
           resetBoard()

@@ -98,7 +98,10 @@ function App() {
       </button>
       <footer className="mt-8">
         <p className="text-indigo-100 text-sm">
-          Developed by <span className="underline">angelhpascual</span>
+          Developed by{" "}
+          <a href="mailto:angelhpascual@gmail.com" className="underline">
+            angelhpascual
+          </a>
         </p>
       </footer>
     </div>

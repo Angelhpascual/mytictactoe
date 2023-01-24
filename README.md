@@ -118,7 +118,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Contact
 
-Segvik - [@twitter_handle](https://twitter.com/angelhpascual) - angelhpascual@gmail.com
+Segvik - [@angelhpascual](https://twitter.com/angelhpascual) - angelhpascual@gmail.com
 
 Project Link: [https://github.com/angelhpascual/mytictactoe](https://github.com/angelhpascual/mytictactoe)
 

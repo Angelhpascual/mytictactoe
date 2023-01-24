@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import Square from "../components/Square"
+import Square from "./components/Square"
 import { TURNS, WINNER_COMBOS } from "./constants"
 import confetti from "canvas-confetti"
 
